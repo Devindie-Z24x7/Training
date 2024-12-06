@@ -10,21 +10,17 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         try {
+            char operationType;
+            double answer;
             //Taking user inputs
-            System.out.print("Enter the first number ");
+            System.out.print("Enter the first number : ");
             double number1 = scanner.nextDouble();
 
-            System.out.print("Enter the second number ");
+            System.out.print("Enter the second number : ");
             double number2 = scanner.nextDouble();
 
-            System.out.print("Select the operation you want to perform \n");
-            System.out.print("Addition : 1 \n");
-            System.out.print("Subtraction : 2 \n");
-            System.out.print("Multiplication : 3 \n");
-            System.out.print("Division : 4 \n");
-
-            int operationType = scanner.nextInt();
-            double answer;
+            System.out.print("Select the operation you want to perform (+ , - , * , /) : ");
+            operationType = scanner.next().charAt(0);
 
             //perform the operation based on users preference
             Operation operation = OperationFactory.getOperation(operationType);
@@ -39,7 +35,9 @@ public class Main {
         }
         catch (InputMismatchException e) {
             System.out.println("Error: Invalid input type. Please enter numeric values.");
-            scanner.nextLine();
+        }
+        catch (IllegalStateException e){
+            System.out.println("Error: " + e.getMessage());
         }
         catch(Exception e){
             System.out.println("Error : Unexpected Error ");

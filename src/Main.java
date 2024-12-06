@@ -9,6 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         try {
+            //Taking user inputs
             System.out.print("Enter the first number ");
             double number1 = scanner.nextDouble();
 
@@ -22,6 +23,8 @@ public class Main {
             System.out.print("Division : 4 \n");
 
             int operation = scanner.nextInt();
+
+            //perform the operation based on users preference
             double answer = switch (operation) {
                 case 1 -> calculator.addition(number1, number2);
                 case 2 -> calculator.subtraction(number1, number2);
@@ -32,6 +35,7 @@ public class Main {
 
             System.out.println("The answer is: " + answer);
         }
+        //error handling
         catch(ArithmeticException | IllegalArgumentException e){
             System.out.println("Error : "+ e.getMessage());
         }

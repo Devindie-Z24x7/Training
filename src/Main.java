@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -22,25 +23,26 @@ public class Main {
             System.out.print("Multiplication : 3 \n");
             System.out.print("Division : 4 \n");
 
-            int operation = scanner.nextInt();
+            int operationType = scanner.nextInt();
+            double answer;
 
             //perform the operation based on users preference
-            double answer = switch (operation) {
-                case 1 -> calculator.addition(number1, number2);
-                case 2 -> calculator.subtraction(number1, number2);
-                case 3 -> calculator.multiplication(number1, number2);
-                case 4 -> calculator.division(number1, number2);
-                default -> throw new IllegalArgumentException("Invalid Operation");
-            };
+            Operation operation = OperationFactory.getOperation(operationType);
+            calculator.setOperation(operation);
 
+            answer = calculator.calculate(number1, number2);
             System.out.println("The answer is: " + answer);
         }
         //error handling
         catch(ArithmeticException | IllegalArgumentException e){
             System.out.println("Error : "+ e.getMessage());
         }
+        catch (InputMismatchException e) {
+            System.out.println("Error: Invalid input type. Please enter numeric values.");
+            scanner.nextLine();
+        }
         catch(Exception e){
-            System.out.println("Error : Invalid Input ");
+            System.out.println("Error : Unexpected Error ");
         }
 
 

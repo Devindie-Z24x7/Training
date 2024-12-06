@@ -1,24 +1,15 @@
 public class Calculator {
-    public double addition(double num1, double num2){
-        return num1 + num2;
+    private Operation operation;
 
+    public void setOperation(Operation operation) {
+        this.operation = operation;
     }
 
-    public double subtraction(double num1, double num2){
-        return num1 - num2;
-
-    }
-
-    public double multiplication(double num1, double num2){
-        return num1 * num2;
-
-    }
-
-    public double division(double num1, double num2){
-        if(num2 == 0) {
-            throw new ArithmeticException("Division by zero is not allowed.");
+    public double calculate(double num1, double num2){
+        if(operation == null){
+            throw new IllegalArgumentException("Empty Operation. Please enter an operation");
         }
-        return num1 / num2;
+        return operation.operate(num1, num2);
 
     }
 }
